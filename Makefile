@@ -1,5 +1,3 @@
-# Proyecto: Servidor Web Bash
-
 # Variables de entorno 
 PORT ?= 8080
 MESSAGE ?= Servidor HTTP en Bash
@@ -50,12 +48,8 @@ test:
 	fi
 
 # Ejecutar servidor
-run:
-	@echo "Iniciando servidor en http://$(HOSTNAME):$(PORT)"
-	@mkdir -p $(OUT_DIR)
-	@bash $(SRC_DIR)/server.sh $(PORT) > $(OUT_DIR)/server.log 2>&1 & \
-	echo $$! > $(OUT_DIR)/server.pid
-	@echo "Servidor corriendo con PID: $$(cat $(OUT_DIR)/server.pid)"
+run-server:
+	PORT=$(PORT) MESSAGE="$(MESSAGE)" bash src/server/server.sh
 
 # Limpiar artefactos
 clean:
@@ -65,7 +59,7 @@ clean:
 # Target principal
 all: evidence
 
-# Realiza el chequeo de DNS
+# Realiza el chequeo de DNS (para sprint 2)
 dns_check:
 	@echo "Realizando chequeo de DNS..."
 	@./src/dns/dns_check.sh
@@ -74,3 +68,15 @@ dns_check:
 evidence:
 	@echo "Generando evidencias de HTTP y DNS..."
 	@./run_evidence.sh
+
+# Para las evidencias se ejecuta un servidor en segundo plano, luego elimina el servidor
+evidences-curl:
+	@mkdir -p out
+	@curl -s http://localhost:$(PORT)/ > out/curl_root.txt
+	@curl -s http://localhost:$(PORT)/bad > out/curl_404.txt
+	@cat out/curl_root.txt
+	@cat out/curl_404.txt
+
+# evidencias completas, asume que el servidor se esta ejecutando para curl
+evidences: evidences-curl
+
