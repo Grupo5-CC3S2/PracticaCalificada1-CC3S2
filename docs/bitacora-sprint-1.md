@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bitacora para sprint 1
 
 - **Estudiante 1**: Jhon Cruz Tairo
@@ -32,5 +33,48 @@
 - En su lugar, se simularon roles con arrays y funciones en Bash. El resultado se almacenó en `out/sim/rol`, se simula cómo cada rol solo tiene acceso a ciertos archivos. Se consideraron dos roles: `root` y `auditor`
 - Se aplicaron permisos (con `chmod`, 600 y 644) para los archivos creados
 
-
 ## Estudiante 3
+
+- Para levantar el servidor se definió el puerto y el mensaje por defecto:
+   ```
+  PORT=8080
+  MESSAGE = "Servidor HTTP en Bash"
+   ```
+
+- Para verificar que todas las herramientas necesarias estuvieran implementó el target `tools`. Ejecutando el comando `make tools`, se obtuvo:
+   ```
+  Verificando herramientas...
+  nc disponible
+  curl disponible
+  dig disponible
+  openssl disponible
+  bats disponible
+   ```
+  Esto indica que todas las dependencias se encuentran instaladas.
+  
+- Construcción del proyecto, se creó el paquete comprimido con el comando `make build`, al ejecutar este comando da como resultado `dist/servidor.tar.gz` con el código fuente y documentación.
+
+- Ejecución de pruebas con el comando `make test`
+   ```
+  Ejecutando pruebas...
+   HTTP responde 200
+   HTTP responde 404
+  2 tests, 0 failures
+   ```
+  El anterior resultado indica que las pruebas pasaron exitosamente.
+
+- Evidencias HTTP, con el servidor en ejecución con el comando `make evidences`
+
+  Archivos generados:
+  - `out/curl_root.txt` → respuesta al acceso `/`
+  - `out/curl_404.txt` → respuesta simulando un 404
+
+- Con el comando `make clean`, se eliminan las carpetas `out/` y `dist/` que contienen las evidencias generadas(`curl_root.txt`, `curl_404.txt`) y el paquete comprimido (`servidor.tar.gz`) generado en el `make build`, respectivamente.
+
+**Decisiones tomadas**
+- Se mantuvieron las variables de entorno con valores simples (`localhost`, `8080`) para facilitar la reproducibilidad.
+- No se añadieron dependencias adicionales más allá de las verificadas en make tools.
+- Las evidencias se generaron en la carpeta `out/` para mantener separado el código fuente de los resultados.
+
+
+>>>>>>> 11c8ef9 (Correciones del makefile y bitacora del sprint 1(estudiante 3))

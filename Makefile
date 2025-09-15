@@ -1,3 +1,4 @@
+
 # Variables de entorno 
 PORT ?= 8080
 MESSAGE ?= Servidor HTTP en Bash
@@ -79,4 +80,4 @@ evidences-curl:
 
 # evidencias completas, asume que el servidor se esta ejecutando para curl
 evidences: evidences-curl
-
+>>>>>>> 11c8ef9 (Correciones del makefile y bitacora del sprint 1(estudiante 3))
