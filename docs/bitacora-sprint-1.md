@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Bitacora para sprint 1
 
 - **Estudiante 1**: Jhon Cruz Tairo
@@ -77,4 +76,3 @@
 - Las evidencias se generaron en la carpeta `out/` para mantener separado el código fuente de los resultados.
 
 
->>>>>>> 11c8ef9 (Correciones del makefile y bitacora del sprint 1(estudiante 3))
