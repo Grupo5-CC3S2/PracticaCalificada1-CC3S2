@@ -5,7 +5,13 @@
 - **Estudiante 3**: Anthony Carlos Ramón
 
 ## Estudiante 1
-
+- Se implemento el script `src/server/server.sh` el cual inicializa un servidor basico totalmente en bash
+- Se uso variables de entorno para pruebas en el makefile como:
+```bash
+PORT ?= 8080
+MESSAGE ?= Servidor HTTP en Bash
+```
+a modo de probar si el servidor local funciona y responde peticiones de forma correcta
 ## Estudiante 2
 
 - Para el funcionamiento del script `generate_cert.sh` se debe definir la variable de entorno `DOMAIN`

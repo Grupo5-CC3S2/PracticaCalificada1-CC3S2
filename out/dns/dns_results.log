@@ -1,0 +1,68 @@
+=== DNS Check iniciado - 2025-09-16 15:32:00 ===
+
+Iniciando verificación DNS...
+=== REGISTROS A ===
+Consultando registro A para google.com:
+  - google.com -> 172.217.28.110
+    TTL: IN segundos
+
+Consultando registro A para github.com:
+  - github.com -> 140.82.113.3
+    TTL: IN segundos
+
+Consultando registro A para stackoverflow.com:
+  - stackoverflow.com -> 104.18.32.7
+  - stackoverflow.com -> 172.64.155.249
+    TTL: IN segundos
+
+Consultando registro A para cloudflare.com:
+  - cloudflare.com -> 104.16.133.229
+  - cloudflare.com -> 104.16.132.229
+    TTL: IN segundos
+
+Consultando registro A para amazon.com:
+  - amazon.com -> 54.239.28.85
+  - amazon.com -> 52.94.236.248
+  - amazon.com -> 205.251.242.103
+    TTL: IN segundos
+
+=== REGISTROS CNAME ===
+Consultando registro CNAME para www.github.com:
+  - www.github.com -> github.com.
+    TTL: IN segundos
+
+Consultando registro CNAME para www.stackoverflow.com:
+  - www.stackoverflow.com -> No tiene registro CNAME
+
+Consultando registro CNAME para www.reddit.com:
+  - www.reddit.com -> reddit.map.fastly.net.
+    TTL: IN segundos
+
+Consultando registro CNAME para www.netflix.com:
+  - www.netflix.com -> www.dradis.netflix.com.
+    TTL: IN segundos
+
+=== PRUEBA SERVIDORES DNS ===
+Probando servidor DNS 8.8.8.8:
+  - Respuesta: 142.251.0.102
+142.251.0.101
+142.251.0.100
+142.251.0.139
+142.251.0.113
+142.251.0.138
+  - Tiempo: 37 msec
+
+Probando servidor DNS 1.1.1.1:
+  - Respuesta: 172.217.28.110
+  - Tiempo: 23 msec
+
+Probando servidor DNS 208.67.222.222:
+  - Respuesta: 142.251.0.138
+142.251.0.139
+142.251.0.100
+142.251.0.101
+142.251.0.102
+142.251.0.113
+  - Tiempo: 251 msec
+
+=== DNS Check completado - 2025-09-16 15:32:02 ===

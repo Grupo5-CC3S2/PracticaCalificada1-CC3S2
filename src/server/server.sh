@@ -4,7 +4,7 @@ set -euo pipefail
 
 # Pasamos las variables de entorno
 PORT="${PORT:-8080}"
-MESSAGE="${MESSAGE:-Hello World}"
+MESSAGE="${MESSAGE:-hola}"
 
 # Creamos el directorio en caso no exista
 mkdir -p out/logs
@@ -22,10 +22,9 @@ trap cleanup EXIT INT TERM
 while true; do
   pipe=$(mktemp -u /tmp/server_pipe.XXXXXX)
   mkfifo "$pipe" || { echo "Failed to create FIFO" >&2; exit 1; }
-  trap "rm -f '$pipe'; exit" INT TERM EXIT
 
   nc -l -p "$PORT" <"$pipe" | (
-    # lee la linea de solcitud
+    # lee la linea de solicitud
     read -r request_line || exit 1
 
     # Omitir el resto de encabezados hasta que quede linea en blanco
@@ -34,36 +33,78 @@ while true; do
       [ -z "$line" ] && break
     done
 
-    # Extrae la ruta e ignora los parametros de consulta
+    # Extrae método, ruta e ignora los parametros de consulta
+    method="$(echo "$request_line" | awk '{print $1}')"
     path="$(echo "$request_line" | awk '{print $2}' | cut -d'?' -f1)"
+    http_version="$(echo "$request_line" | awk '{print $3}')"
 
-    #registra la solicitud
+    # Registra la solicitud
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$timestamp] $request_line" >> out/logs/access.log
 
-    if [ "$path" = "/" ]; then
-      status="200 OK"
-      body="200 OK: $MESSAGE"
-    else
-      status="404 Not Found"
-      body="Error 404: Resource not found"
+    # Validación del método HTTP
+    case "$method" in
+      "GET"|"HEAD")
+        # Métodos soportados
+        ;;
+      "")
+        status="400 Bad Request"
+        body="Error 400: Bad Request - Missing HTTP method"
+        ;;
+      *)
+        status="405 Method Not Allowed"
+        body="Error 405: Method Not Allowed - Supported methods: GET, HEAD"
+        ;;
+    esac
+
+    # Si no hay error de método, procesar la ruta
+    if [ -z "${status:-}" ]; then
+      case "$path" in
+        "/")
+          status="200 OK"
+          body="200 OK: $MESSAGE"
+          ;;
+        "/status")
+          status="200 OK"
+          body="Server Status: Running on port $PORT"
+          ;;
+        "/health")
+          status="200 OK"
+          body="Health: OK"
+          ;;
+        *)
+          status="404 Not Found"
+          body="Error 404: Resource not found"
+          ;;
+      esac
     fi
 
     content_length="${#body}"
 
-    # Muestra el resultado de la consulta
-    printf "HTTP/1.1 %s\r\n" "$status"
-    printf "Content-Type: text/plain\r\n"
-    printf "Content-Length: %d\r\n" "$content_length"
-    printf "Connection: close\r\n"
-    printf "\r\n"
-    printf "%s" "$body"
+    # Construir respuesta HTTP
+    response_headers=""
+    response_headers+="HTTP/1.1 $status"$'\r\n'
+    response_headers+="Content-Type: text/plain"$'\r\n'
+    response_headers+="Content-Length: $content_length"$'\r\n'
+    response_headers+="Server: BashHTTP/1.0"$'\r\n'
+    response_headers+="Date: $(date -u '+%a, %d %b %Y %H:%M:%S GMT')"$'\r\n'
+    response_headers+="Connection: close"$'\r\n'
+    response_headers+=$'\r\n'
 
-    # registra el estado de la respuesta en out
-    echo "[$timestamp] Response: $status" >> out/logs/access.log
+    # Enviar respuesta según el método
+    if [ "$method" = "HEAD" ]; then
+      # Para HEAD solo enviamos headers, sin body
+      printf "%s" "$response_headers"
+    else
+      # Para GET enviamos headers + body
+      printf "%s" "$response_headers"
+      printf "%s" "$body"
+    fi
+
+    # Registra el estado de la respuesta
+    echo "[$timestamp] Response: $status (Method: $method, Path: $path)" >> out/logs/access.log
   ) >"$pipe"
 
-  # limpia el pipe despues de procesar la solicitud
+  # Limpia el pipe despues de procesar la solicitud
   rm -f "$pipe"
-  trap cleanup EXIT INT TERM
 done

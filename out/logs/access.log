@@ -1,12 +1,208 @@
-[2025-09-12 23:32:42] GET / HTTP/1.1
-[2025-09-12 23:32:42] Response: 200 OK
-[2025-09-12 23:32:49] GET /bad HTTP/1.1
-[2025-09-12 23:32:49] Response: 404 Not Found
-[2025-09-12 23:33:05] GET / HTTP/1.1
-[2025-09-12 23:33:05] Response: 200 OK
-[2025-09-12 23:33:05] GET /bad HTTP/1.1
-[2025-09-12 23:33:05] Response: 404 Not Found
-[2025-09-14 12:12:09] GET / HTTP/1.1
-[2025-09-14 12:12:09] Response: 200 OK
-[2025-09-14 12:12:09] GET /bad HTTP/1.1
-[2025-09-14 12:12:09] Response: 404 Not Found
+[2025-09-15 19:01:21] GET / HTTP/1.1
+[2025-09-15 19:01:21] Response: 200 OK
+[2025-09-15 19:01:21] GET /bad HTTP/1.1
+[2025-09-15 19:01:21] Response: 404 Not Found
+[2025-09-15 19:02:50] GET / HTTP/1.1
+[2025-09-15 19:02:50] Response: 200 OK
+[2025-09-15 19:02:57] GET / HTTP/1.1
+[2025-09-15 19:02:57] Response: 200 OK
+[2025-09-15 19:02:57] GET /bad HTTP/1.1
+[2025-09-15 19:02:57] Response: 404 Not Found
+[2025-09-15 19:43:25] GET / HTTP/1.1
+[2025-09-15 19:43:25] Response: 200 OK
+[2025-09-15 19:43:41] GET /bad HTTP/1.1
+[2025-09-15 19:43:41] Response: 404 Not Found
+[2025-09-15 19:43:59] GET / HTTP/1.1
+[2025-09-15 19:43:59] Response: 200 OK
+[2025-09-15 19:43:59] GET /bad HTTP/1.1
+[2025-09-15 19:43:59] Response: 404 Not Found
+[2025-09-16 08:43:48] GET / HTTP/1.1
+[2025-09-16 08:43:48] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 08:43:57] GET /bad HTTP/1.1
+[2025-09-16 08:43:57] Response: 404 Not Found (Method: GET, Path: /bad)
+[2025-09-16 08:44:30] GET /bad HTTP/1.1
+[2025-09-16 08:44:30] Response: 404 Not Found (Method: GET, Path: /bad)
+[2025-09-16 09:03:19] GET / HTTP/1.1
+[2025-09-16 09:03:19] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:03:21] GET /ruta-inexistente HTTP/1.1
+[2025-09-16 09:03:21] Response: 404 Not Found (Method: GET, Path: /ruta-inexistente)
+[2025-09-16 09:03:23] GET /status HTTP/1.1
+[2025-09-16 09:03:23] Response: 200 OK (Method: GET, Path: /status)
+[2025-09-16 09:03:25] GET /health HTTP/1.1
+[2025-09-16 09:03:25] Response: 200 OK (Method: GET, Path: /health)
+[2025-09-16 09:03:27] HEAD / HTTP/1.1
+[2025-09-16 09:03:27] Response: 200 OK (Method: HEAD, Path: /)
+[2025-09-16 09:03:29] HEAD /ruta-inexistente HTTP/1.1
+[2025-09-16 09:03:29] Response: 404 Not Found (Method: HEAD, Path: /ruta-inexistente)
+[2025-09-16 09:03:39] POST / HTTP/1.1
+[2025-09-16 09:03:39] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:03:41] PUT / HTTP/1.1
+[2025-09-16 09:03:41] Response: 405 Method Not Allowed (Method: PUT, Path: /)
+[2025-09-16 09:03:44] DELETE / HTTP/1.1
+[2025-09-16 09:03:44] Response: 405 Method Not Allowed (Method: DELETE, Path: /)
+[2025-09-16 09:03:46] GET / HTTP/1.1
+[2025-09-16 09:03:46] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:03:56] GET / HTTP/1.1
+[2025-09-16 09:03:56] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:03:58] GET / HTTP/1.1
+[2025-09-16 09:03:58] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:04:00] GET / HTTP/1.1
+[2025-09-16 09:04:00] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:04:00] GET / HTTP/1.1
+[2025-09-16 09:04:00] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:04:00] GET / HTTP/1.1
+[2025-09-16 09:04:00] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:06] GET / HTTP/1.1
+[2025-09-16 09:05:06] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:08] GET /ruta-inexistente HTTP/1.1
+[2025-09-16 09:05:08] Response: 404 Not Found (Method: GET, Path: /ruta-inexistente)
+[2025-09-16 09:05:10] GET /status HTTP/1.1
+[2025-09-16 09:05:10] Response: 200 OK (Method: GET, Path: /status)
+[2025-09-16 09:05:20] GET /health HTTP/1.1
+[2025-09-16 09:05:20] Response: 200 OK (Method: GET, Path: /health)
+[2025-09-16 09:05:22] HEAD / HTTP/1.1
+[2025-09-16 09:05:22] Response: 200 OK (Method: HEAD, Path: /)
+[2025-09-16 09:05:24] HEAD /ruta-inexistente HTTP/1.1
+[2025-09-16 09:05:24] Response: 404 Not Found (Method: HEAD, Path: /ruta-inexistente)
+[2025-09-16 09:05:26] POST / HTTP/1.1
+[2025-09-16 09:05:26] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:05:28] PUT / HTTP/1.1
+[2025-09-16 09:05:28] Response: 405 Method Not Allowed (Method: PUT, Path: /)
+[2025-09-16 09:05:30] DELETE / HTTP/1.1
+[2025-09-16 09:05:30] Response: 405 Method Not Allowed (Method: DELETE, Path: /)
+[2025-09-16 09:05:33] GET / HTTP/1.1
+[2025-09-16 09:05:33] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:35] GET / HTTP/1.1
+[2025-09-16 09:05:35] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:37] GET / HTTP/1.1
+[2025-09-16 09:05:37] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:39] GET / HTTP/1.1
+[2025-09-16 09:05:39] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:39] GET / HTTP/1.1
+[2025-09-16 09:05:39] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:39] GET / HTTP/1.1
+[2025-09-16 09:05:39] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:05:58] GET / HTTP/1.1
+[2025-09-16 09:05:58] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:06:00] GET /ruta-inexistente HTTP/1.1
+[2025-09-16 09:06:00] Response: 404 Not Found (Method: GET, Path: /ruta-inexistente)
+[2025-09-16 09:06:03] GET /status HTTP/1.1
+[2025-09-16 09:06:03] Response: 200 OK (Method: GET, Path: /status)
+[2025-09-16 09:06:05] GET /health HTTP/1.1
+[2025-09-16 09:06:05] Response: 200 OK (Method: GET, Path: /health)
+[2025-09-16 09:06:07] HEAD / HTTP/1.1
+[2025-09-16 09:06:07] Response: 200 OK (Method: HEAD, Path: /)
+[2025-09-16 09:06:09] HEAD /ruta-inexistente HTTP/1.1
+[2025-09-16 09:06:09] Response: 404 Not Found (Method: HEAD, Path: /ruta-inexistente)
+[2025-09-16 09:06:11] POST / HTTP/1.1
+[2025-09-16 09:06:11] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:06:13] PUT / HTTP/1.1
+[2025-09-16 09:06:13] Response: 405 Method Not Allowed (Method: PUT, Path: /)
+[2025-09-16 09:06:15] DELETE / HTTP/1.1
+[2025-09-16 09:06:15] Response: 405 Method Not Allowed (Method: DELETE, Path: /)
+[2025-09-16 09:06:25] GET / HTTP/1.1
+[2025-09-16 09:06:25] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:06:27] GET / HTTP/1.1
+[2025-09-16 09:06:27] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:06:29] GET / HTTP/1.1
+[2025-09-16 09:06:29] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:06:29] GET / HTTP/1.1
+[2025-09-16 09:06:29] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:06:29] GET / HTTP/1.1
+[2025-09-16 09:06:29] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:07:30] GET / HTTP/1.1
+[2025-09-16 09:07:30] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:07:33] GET /ruta-inexistente HTTP/1.1
+[2025-09-16 09:07:33] Response: 404 Not Found (Method: GET, Path: /ruta-inexistente)
+[2025-09-16 09:07:35] GET /status HTTP/1.1
+[2025-09-16 09:07:35] Response: 200 OK (Method: GET, Path: /status)
+[2025-09-16 09:07:37] GET /health HTTP/1.1
+[2025-09-16 09:07:37] Response: 200 OK (Method: GET, Path: /health)
+[2025-09-16 09:07:39] HEAD / HTTP/1.1
+[2025-09-16 09:07:39] Response: 200 OK (Method: HEAD, Path: /)
+[2025-09-16 09:07:49] HEAD /ruta-inexistente HTTP/1.1
+[2025-09-16 09:07:49] Response: 404 Not Found (Method: HEAD, Path: /ruta-inexistente)
+[2025-09-16 09:07:51] POST / HTTP/1.1
+[2025-09-16 09:07:51] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:07:53] PUT / HTTP/1.1
+[2025-09-16 09:07:53] Response: 405 Method Not Allowed (Method: PUT, Path: /)
+[2025-09-16 09:07:55] DELETE / HTTP/1.1
+[2025-09-16 09:07:55] Response: 405 Method Not Allowed (Method: DELETE, Path: /)
+[2025-09-16 09:07:57] GET / HTTP/1.1
+[2025-09-16 09:07:57] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:07:59] GET /nonexistent HTTP/1.1
+[2025-09-16 09:07:59] Response: 404 Not Found (Method: GET, Path: /nonexistent)
+[2025-09-16 09:08:01] POST / HTTP/1.1
+[2025-09-16 09:08:01] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:08:03] GET / HTTP/1.1
+[2025-09-16 09:08:03] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:08:06] GET / HTTP/1.1
+[2025-09-16 09:08:06] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:08:06] GET / HTTP/1.1
+[2025-09-16 09:08:06] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:08:06] GET / HTTP/1.1
+[2025-09-16 09:08:06] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:27:43] GET / HTTP/1.1
+[2025-09-16 09:27:43] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:27:45] GET /ruta-inexistente HTTP/1.1
+[2025-09-16 09:27:45] Response: 404 Not Found (Method: GET, Path: /ruta-inexistente)
+[2025-09-16 09:27:48] GET /status HTTP/1.1
+[2025-09-16 09:27:48] Response: 200 OK (Method: GET, Path: /status)
+[2025-09-16 09:27:50] GET /health HTTP/1.1
+[2025-09-16 09:27:50] Response: 200 OK (Method: GET, Path: /health)
+[2025-09-16 09:27:52] HEAD / HTTP/1.1
+[2025-09-16 09:27:52] Response: 200 OK (Method: HEAD, Path: /)
+[2025-09-16 09:27:54] HEAD /ruta-inexistente HTTP/1.1
+[2025-09-16 09:27:54] Response: 404 Not Found (Method: HEAD, Path: /ruta-inexistente)
+[2025-09-16 09:27:56] POST / HTTP/1.1
+[2025-09-16 09:27:56] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:27:58] PUT / HTTP/1.1
+[2025-09-16 09:27:58] Response: 405 Method Not Allowed (Method: PUT, Path: /)
+[2025-09-16 09:28:00] DELETE / HTTP/1.1
+[2025-09-16 09:28:00] Response: 405 Method Not Allowed (Method: DELETE, Path: /)
+[2025-09-16 09:28:02] GET / HTTP/1.1
+[2025-09-16 09:28:02] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:28:04] GET /nonexistent HTTP/1.1
+[2025-09-16 09:28:04] Response: 404 Not Found (Method: GET, Path: /nonexistent)
+[2025-09-16 09:28:07] POST / HTTP/1.1
+[2025-09-16 09:28:07] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 09:28:09] GET / HTTP/1.1
+[2025-09-16 09:28:09] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:28:11] GET / HTTP/1.1
+[2025-09-16 09:28:11] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:28:11] GET / HTTP/1.1
+[2025-09-16 09:28:11] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 09:28:11] GET / HTTP/1.1
+[2025-09-16 09:28:11] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 15:31:12] GET / HTTP/1.1
+[2025-09-16 15:31:12] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 15:31:14] GET /ruta-inexistente HTTP/1.1
+[2025-09-16 15:31:14] Response: 404 Not Found (Method: GET, Path: /ruta-inexistente)
+[2025-09-16 15:31:16] GET /status HTTP/1.1
+[2025-09-16 15:31:16] Response: 200 OK (Method: GET, Path: /status)
+[2025-09-16 15:31:18] GET /health HTTP/1.1
+[2025-09-16 15:31:18] Response: 200 OK (Method: GET, Path: /health)
+[2025-09-16 15:31:21] HEAD / HTTP/1.1
+[2025-09-16 15:31:21] Response: 200 OK (Method: HEAD, Path: /)
+[2025-09-16 15:31:23] HEAD /ruta-inexistente HTTP/1.1
+[2025-09-16 15:31:23] Response: 404 Not Found (Method: HEAD, Path: /ruta-inexistente)
+[2025-09-16 15:31:25] POST / HTTP/1.1
+[2025-09-16 15:31:25] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 15:31:27] PUT / HTTP/1.1
+[2025-09-16 15:31:27] Response: 405 Method Not Allowed (Method: PUT, Path: /)
+[2025-09-16 15:31:29] DELETE / HTTP/1.1
+[2025-09-16 15:31:29] Response: 405 Method Not Allowed (Method: DELETE, Path: /)
+[2025-09-16 15:31:31] GET / HTTP/1.1
+[2025-09-16 15:31:31] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 15:31:33] GET /nonexistent HTTP/1.1
+[2025-09-16 15:31:33] Response: 404 Not Found (Method: GET, Path: /nonexistent)
+[2025-09-16 15:31:35] POST / HTTP/1.1
+[2025-09-16 15:31:35] Response: 405 Method Not Allowed (Method: POST, Path: /)
+[2025-09-16 15:31:37] GET / HTTP/1.1
+[2025-09-16 15:31:37] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 15:31:39] GET / HTTP/1.1
+[2025-09-16 15:31:39] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 15:31:40] GET / HTTP/1.1
+[2025-09-16 15:31:40] Response: 200 OK (Method: GET, Path: /)
+[2025-09-16 15:31:40] GET / HTTP/1.1
+[2025-09-16 15:31:40] Response: 200 OK (Method: GET, Path: /)
