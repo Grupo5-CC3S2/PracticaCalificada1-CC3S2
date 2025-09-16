@@ -4,9 +4,10 @@ set -euo pipefail
 # Si no se define DOMAIN, se produce un error
 : "${DOMAIN:?Debe definir DOMAIN (ej. export DOMAIN=localhost)}"
 
-CERT_DIR="out/certs"
-SIM_ROOT="out/sim/root"
-SIM_AUDITOR="out/sim/auditor"
+ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
+CERT_DIR="${ROOT_DIR}/out/certs"
+SIM_ROOT="${ROOT_DIR}/out/sim/root"
+SIM_AUDITOR="${ROOT_DIR}/out/sim/auditor"
 
 KEY_FILE="${CERT_DIR}/${DOMAIN}.key"
 CRT_FILE="${CERT_DIR}/${DOMAIN}.crt"
