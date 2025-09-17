@@ -1,8 +1,9 @@
 
 # Variables de entorno 
-PORT ?= 8080
+HTTP_PORT ?= 8080
+TLS_PORT ?= 8443
 MESSAGE ?= Servidor HTTP en Bash
-HOSTNAME ?= localhost
+DOMAIN ?= localhost
 
 # Carpetas
 SRC_DIR := src
@@ -48,9 +49,19 @@ test:
 		echo "No hay carpeta de tests/"; \
 	fi
 
+# Generar certificados
+generate-certs:
+	@echo "Ejecutando script para generar certificado y clave privada..."
+	@DOMAIN=$(DOMAIN) bash src/tls/generate_cert.sh
+
 # Ejecutar servidor
-run-server:
-	PORT=$(PORT) MESSAGE="$(MESSAGE)" bash src/server/server.sh
+run-http-server:
+	@PORT=$(HTTP_PORT) MESSAGE="$(MESSAGE)" bash src/server/server.sh
+
+# Ejecutar servidor TLS
+run-tls-server:
+	@echo "Ejecutando script para levantar el servidor TLS..."
+	@DOMAIN=$(DOMAIN) PORT=$(TLS_PORT) bash src/tls/tls_server.sh -www
 
 # Limpiar artefactos
 clean:
@@ -63,27 +74,34 @@ all: evidence
 # Realiza el chequeo de DNS (para sprint 2)
 dns_check:
 	@echo "Realizando chequeo de DNS..."
-	@./src/dns/dns_check.sh
-
-# Genera todas las evidencias
-evidence:
-	@echo "Generando evidencias de HTTP y DNS..."
-	@./run_evidence.sh
+	@bash ./src/dns/dns_check.sh
 
 # Para las evidencias se ejecuta un servidor en segundo plano, luego elimina el servidor
-evidences-curl:
-	@mkdir -p out
+curl-http:
+	@mkdir -p out/http
+	@echo "Probando servidor HTTP con curl..."
 	@curl -s http://localhost:$(PORT)/ > out/curl_root.txt
 	@curl -s http://localhost:$(PORT)/bad > out/curl_404.txt
-	@cat out/curl_root.txt
-	@cat out/curl_404.txt
+	@echo "Resultados generados en out/"
+	
 
-# evidencias completas, asume que el servidor se esta ejecutando para curl
-evidences: evidences-curl
+# Para las evidencias de una conexión con el servidor TLS, se tiene que levantar el servidor primero con make run-tls-server
+curl-tls:
+	@mkdir -p out/tls
+	@echo "Probando conexión TLS con curl (ignorando validación)..."
+	@curl -sk https://$(DOMAIN):$(TLS_PORT)/ > out/tls/curl_tls_root.txt
+	@echo "Resultados generados en out/tls/curl_tls_root.txt"
+
+# Para las evidencias del handshake del cliente con el servidor TLS
+tls-handshake:
+	@mkdir -p out/tls
+	@echo "Capturando handshake con openssl s_client..."
+	@openssl s_client -connect $(DOMAIN):$(TLS_PORT) -servername $(DOMAIN) < /dev/null > out/tls/openssl_handshake.txt 2>&1
+	@echo "Resultados generados en out/tls/openssl_handshake.txt"
 
 # Mostrar logs del servicio servidor
 logs:
 	@echo "Mostrando logs del servicio servidor..."
 	@journalctl --user -u servidor -n 20 --no-pager
 
-
+evidences: curl-http curl-tls tls-handshake
