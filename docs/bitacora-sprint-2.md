@@ -77,3 +77,47 @@
 - `ss -ltnp` puede emplearse como evidencia de que el servidor TLS abre un socket en el puerto 8443
 
 ## Estudiante 3
+
+- Creación de unidad systemd/servidor.service
+
+  Se definió el archivo de servicio en `~/.config/systemd/user/servidor.service`
+
+- Se recargó el demonio de systemd y se activó el servicio, con los comandos:
+
+  ```
+	systemctl --user daemon-reload
+    systemctl --user enable servidor
+    systemctl --user start servidor
+  ```
+  Se verifica el estado con el comando:
+   
+  ```
+	systemctl --user status servidor
+  ```
+  Salida relevante:
+  ```
+	Active: active (running)
+    Main PID: 1234 (bash)
+  ```
+
+- Ampliación del Makefile con `make logs`
+
+  Se añadió el siguiente target al Makefile:
+
+  ```
+	logs:
+	@echo "Mostrando logs del servicio servidor..."
+	@journalctl --user -u servidor -n 20 --no-pager
+  ```
+
+  Salida:
+  ```
+	Mostrando logs del servicio servidor...
+    Servidor HTTP en Bash iniciado en puerto 8080
+  ```
+
+**Decisiones tomadas**
+
+- Se integró `systemd` para gestionar el servidor como servicio en segundo plano.
+- Se documentó y facilitó el acceso a registros con `journalctl` y el nuevo target make logs.
+
