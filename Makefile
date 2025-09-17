@@ -4,12 +4,23 @@ HTTP_PORT ?= 8080
 TLS_PORT ?= 8443
 MESSAGE ?= Servidor HTTP en Bash
 DOMAIN ?= localhost
+RELEASE ?= 1.0
 
 # Carpetas
 SRC_DIR := src
 OUT_DIR := out
 DIST_DIR := dist
 TEST_DIR := tests
+
+# Lista de scripts fuente
+SOURCES := $(wildcard $(SRC_DIR)/*.sh)
+OBJECTS := $(patsubst $(SRC_DIR)/%.sh,$(OUT_DIR)/%.sh,$(SOURCES))
+
+# Regla patrón: copia solo los scripts modificados a out/
+$(OUT_DIR)/%.sh: $(SRC_DIR)/%.sh
+	@mkdir -p $(OUT_DIR)
+	@cp $< $@
+	@echo "Actualizado: $@"
 
 # Mostrar ayuda
 help:
@@ -105,3 +116,10 @@ logs:
 	@journalctl --user -u servidor -n 20 --no-pager
 
 evidences: curl-http curl-tls tls-handshake
+
+pack: $(DIST_DIR)/proyecto1-$(RELEASE).tar.gz
+
+$(DIST_DIR)/proyecto1-$(RELEASE).tar.gz: $(SOURCES)
+	@mkdir -p $(DIST_DIR)
+	@tar -czf $@ $(SRC_DIR) docs
+	@echo "Paquete generado: $@"
