@@ -74,7 +74,7 @@ all: evidence
 # Realiza el chequeo de DNS (para sprint 2)
 dns_check:
 	@echo "Realizando chequeo de DNS..."
-	@./src/dns/dns_check.sh
+	@bash ./src/dns/dns_check.sh
 
 # Para las evidencias se ejecuta un servidor en segundo plano, luego elimina el servidor
 curl-http:
