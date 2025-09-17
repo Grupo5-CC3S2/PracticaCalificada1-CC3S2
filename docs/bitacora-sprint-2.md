@@ -7,6 +7,40 @@
 
 ## Estudiante 1
 
+- Ampliación del servidor HTTP para manejar métodos `GET` y `HEAD`.  
+  - Se implementó la validación de códigos HTTP usando `curl -i` para verificar que el servidor responda correctamente con `200 OK`, `404 Not Found` y otros códigos según la ruta solicitada.  
+  - Ejemplo de prueba:
+
+    ```bash
+    curl -i http://localhost:8080/
+    curl -i http://localhost:8080/bad
+    ```
+
+- Implementación de consultas DNS (A, CNAME, TTL).  
+  - Se desarrolló un script para consultar dominios usando `dig` y procesar la salida con `grep`, `sed` y `awk`.  
+  - Ejemplo de ejecución:
+
+    ```bash
+    bash src/dns/dns_check.sh
+    ```
+
+  - Los resultados se almacenan en `out/dns/dns_check.txt` y contienen las direcciones IP y registros CNAME consultados.
+
+- Parseo y registro de solicitudes HTTP en `out/logs/access.log`.  
+  - Cada solicitud incluye timestamp, método, ruta y código de respuesta.  
+  - Ejemplo de línea registrada:
+
+    ```
+    [2025-09-17 01:43:36] GET / 200 OK
+    ```
+
+**Decisiones tomadas**
+
+- Se decidió que el servidor debe cerrar la conexión tras cada petición para simplificar la gestión de clientes concurrentes con `nc`.  
+- Se optó por almacenar logs de acceso en `out/logs/access.log` para mantener un registro completo de las solicitudes HTTP.  
+- La salida de DNS se centraliza en un único archivo (`out/dns/dns_check.txt`) para facilitar la generación de evidencias y pruebas automáticas.
+
+
 ## Estudiante 2
 
 - Para generar  certificado y clave privada autofirmados.
@@ -77,3 +111,47 @@
 - `ss -ltnp` puede emplearse como evidencia de que el servidor TLS abre un socket en el puerto 8443
 
 ## Estudiante 3
+
+- Creación de unidad systemd/servidor.service
+
+  Se definió el archivo de servicio en `~/.config/systemd/user/servidor.service`
+
+- Se recargó el demonio de systemd y se activó el servicio, con los comandos:
+
+  ```
+	systemctl --user daemon-reload
+    systemctl --user enable servidor
+    systemctl --user start servidor
+  ```
+  Se verifica el estado con el comando:
+   
+  ```
+	systemctl --user status servidor
+  ```
+  Salida relevante:
+  ```
+	Active: active (running)
+    Main PID: 1234 (bash)
+  ```
+
+- Ampliación del Makefile con `make logs`
+
+  Se añadió el siguiente target al Makefile:
+
+  ```
+	logs:
+	@echo "Mostrando logs del servicio servidor..."
+	@journalctl --user -u servidor -n 20 --no-pager
+  ```
+
+  Salida:
+  ```
+	Mostrando logs del servicio servidor...
+    Servidor HTTP en Bash iniciado en puerto 8080
+  ```
+
+**Decisiones tomadas**
+
+- Se integró `systemd` para gestionar el servidor como servicio en segundo plano.
+- Se documentó y facilitó el acceso a registros con `journalctl` y el nuevo target make logs.
+
