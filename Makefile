@@ -1,4 +1,3 @@
-
 # Variables de entorno 
 HTTP_PORT ?= 8080
 TLS_PORT ?= 8443
@@ -91,8 +90,8 @@ dns_check:
 curl-http:
 	@mkdir -p out/http
 	@echo "Probando servidor HTTP con curl..."
-	@curl -s http://localhost:$(PORT)/ > out/curl_root.txt
-	@curl -s http://localhost:$(PORT)/bad > out/curl_404.txt
+	@curl -s http://localhost:$(PORT)/ > out/http/curl_root.txt
+	@curl -s http://localhost:$(PORT)/bad > out/http/curl_404.txt
 	@echo "Resultados generados en out/"
 	
 
@@ -115,11 +114,16 @@ logs:
 	@echo "Mostrando logs del servicio servidor..."
 	@journalctl --user -u servidor -n 20 --no-pager
 
+# Evidencias completas, asume que el servidor HTTP y TLS se están ejecutando
 evidences: curl-http curl-tls tls-handshake
 
+# Empaquetado
 pack: $(DIST_DIR)/proyecto1-$(RELEASE).tar.gz
 
 $(DIST_DIR)/proyecto1-$(RELEASE).tar.gz: $(SOURCES)
 	@mkdir -p $(DIST_DIR)
 	@tar -czf $@ $(SRC_DIR) docs
 	@echo "Paquete generado: $@"
+
+.PHONY: help tools build test generate-certs run-http-server run-tls-server \
+        clean all dns_check curl-http curl-tls tls-handshake pack logs

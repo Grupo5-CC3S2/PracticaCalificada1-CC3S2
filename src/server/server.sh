@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -102,7 +102,7 @@ while true; do
     fi
 
     # Registra el estado de la respuesta
-    echo "[$timestamp] Response: $status (Method: $method, Path: $path)" >> out/logs/access.log
+    echo "[$timestamp] Response: $status (Method: $method, Path: $path)"
   ) >"$pipe"
 
   # Limpia el pipe despues de procesar la solicitud
