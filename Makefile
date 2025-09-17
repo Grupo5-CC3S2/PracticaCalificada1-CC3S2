@@ -80,8 +80,8 @@ dns_check:
 curl-http:
 	@mkdir -p out/http
 	@echo "Probando servidor HTTP con curl..."
-	@curl -s http://localhost:$(PORT)/ > out/curl_root.txt
-	@curl -s http://localhost:$(PORT)/bad > out/curl_404.txt
+	@curl -s http://localhost:$(PORT)/ > out/http/curl_root.txt
+	@curl -s http://localhost:$(PORT)/bad > out/http/curl_404.txt
 	@echo "Resultados generados en out/"
 	
 
