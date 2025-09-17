@@ -7,39 +7,6 @@
 
 ## Estudiante 1
 
-- Ampliación del servidor HTTP para manejar métodos `GET` y `HEAD`.  
-  - Se implementó la validación de códigos HTTP usando `curl -i` para verificar que el servidor responda correctamente con `200 OK`, `404 Not Found` y otros códigos según la ruta solicitada.  
-  - Ejemplo de prueba:
-
-    ```bash
-    curl -i http://localhost:8080/
-    curl -i http://localhost:8080/bad
-    ```
-
-- Implementación de consultas DNS (A, CNAME, TTL).  
-  - Se desarrolló un script para consultar dominios usando `dig` y procesar la salida con `grep`, `sed` y `awk`.  
-  - Ejemplo de ejecución:
-
-    ```bash
-    bash src/dns/dns_check.sh
-    ```
-
-  - Los resultados se almacenan en `out/dns/dns_check.txt` y contienen las direcciones IP y registros CNAME consultados.
-
-- Parseo y registro de solicitudes HTTP en `out/logs/access.log`.  
-  - Cada solicitud incluye timestamp, método, ruta y código de respuesta.  
-  - Ejemplo de línea registrada:
-
-    ```
-    [2025-09-17 01:43:36] GET / 200 OK
-    ```
-
-**Decisiones tomadas**
-
-- Se decidió que el servidor debe cerrar la conexión tras cada petición para simplificar la gestión de clientes concurrentes con `nc`.  
-- Se optó por almacenar logs de acceso en `out/logs/access.log` para mantener un registro completo de las solicitudes HTTP.  
-- La salida de DNS se centraliza en un único archivo (`out/dns/dns_check.txt`) para facilitar la generación de evidencias y pruebas automáticas.
-
 
 ## Estudiante 2
 

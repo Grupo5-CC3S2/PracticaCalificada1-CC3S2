@@ -6,6 +6,13 @@
 
 ## Estudiante 1
 
+- Se implementaros las pruebas automatizadas con **Bats** para las peticiones HTTP y resolucion DNS con dig. Los tests se encuentran en `tests/dns_tests.bats` y `tests/http_tests.bats`
+
+```console
+# make test ejecuta todos los tests en /tests/
+```
+todos los tests pasan de manera satisfactoria
+
 ## Estudiante 2
 
 - Se implementaron las pruebas automatizadas con **Bats** para validar el correcto funcionamiento del servidor TLS. Los tests se encuentran en `tests/tls_tests.bats`, para ejecutarlos, podemos emplear:

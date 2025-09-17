@@ -33,7 +33,7 @@ while true; do
       [ -z "$line" ] && break
     done
 
-    # Extrae método, ruta e ignora los parametros de consulta
+    # Extrae metodo, ruta e ignora los parametros de consulta
     method="$(echo "$request_line" | awk '{print $1}')"
     path="$(echo "$request_line" | awk '{print $2}' | cut -d'?' -f1)"
     http_version="$(echo "$request_line" | awk '{print $3}')"
@@ -78,18 +78,15 @@ while true; do
           ;;
       esac
     fi
-
-    content_length="${#body}"
-
-    # Construir respuesta HTTP
+    
     response_headers=""
     response_headers+="HTTP/1.1 $status"$'\r\n'
     response_headers+="Content-Type: text/plain"$'\r\n'
-    response_headers+="Content-Length: $content_length"$'\r\n'
     response_headers+="Server: BashHTTP/1.0"$'\r\n'
     response_headers+="Date: $(date -u '+%a, %d %b %Y %H:%M:%S GMT')"$'\r\n'
     response_headers+="Connection: close"$'\r\n'
     response_headers+=$'\r\n'
+
 
     # Enviar respuesta según el método
     if [ "$method" = "HEAD" ]; then
