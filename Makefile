@@ -1,4 +1,3 @@
-
 # Variables de entorno 
 HTTP_PORT ?= 8080
 TLS_PORT ?= 8443
@@ -101,3 +100,6 @@ tls-handshake:
 
 # Evidencias completas, asume que el servidor HTTP y TLS se están ejecutando
 evidences: curl-http curl-tls tls-handshake
+
+.PHONY: help tools build test generate-certs run-http-server run-tls-server \
+        clean all dns_check curl-http curl-tls tls-handshake evidences
