@@ -80,3 +80,10 @@ evidences-curl:
 
 # evidencias completas, asume que el servidor se esta ejecutando para curl
 evidences: evidences-curl
+
+# Mostrar logs del servicio servidor
+logs:
+	@echo "Mostrando logs del servicio servidor..."
+	@journalctl --user -u servidor -n 20 --no-pager
+
+
