@@ -1,0 +1,12 @@
+[Unit]
+Description=Servidor HTTP en Bash
+After=network.target
+
+[Service]
+ExecStart=/home/gianc/PracticaCalificada1-CC3S2/src/server/server.sh
+Restart=on-failure
+Environment=PORT=8080 MESSAGE="Servidor HTTP en Bash desde systemd"
+WorkingDirectory=/home/gianc/PracticaCalificada1-CC3S2/src/server
+
+[Install]
+WantedBy=default.target

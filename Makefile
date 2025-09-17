@@ -98,8 +98,13 @@ tls-handshake:
 	@openssl s_client -connect $(DOMAIN):$(TLS_PORT) -servername $(DOMAIN) < /dev/null > out/tls/openssl_handshake.txt 2>&1
 	@echo "Resultados generados en out/tls/openssl_handshake.txt"
 
+# Mostrar logs del servicio servidor
+logs:
+	@echo "Mostrando logs del servicio servidor..."
+	@journalctl --user -u servidor -n 20 --no-pager
+
 # Evidencias completas, asume que el servidor HTTP y TLS se están ejecutando
 evidences: curl-http curl-tls tls-handshake
 
 .PHONY: help tools build test generate-certs run-http-server run-tls-server \
-        clean all dns_check curl-http curl-tls tls-handshake evidences
+        clean all dns_check curl-http curl-tls tls-handshake evidences logs
